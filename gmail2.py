@@ -14,6 +14,8 @@ import smsSender
 import time
 import sqlite3
 
+
+#this database is used to store the threadID of emails that triggered a notification. We will check against this database to avoid duplciate notifications
 db_directory = os.path.curdir
 
 db_path = os.path.join(db_directory, 'sent_emails.db')
@@ -39,10 +41,7 @@ SCOPES = ['https://www.googleapis.com/auth/gmail.send', 'https://www.googleapis.
 
 
 region_info = {
-     'testing': ['sam.radtke99@gmail.com', 'danielponto0@gmail.com'],
-     'Buffalo': ['sam.radtke99@gmail.com', 'danielponto0@gmail.com', 'jergej1@gmai.com', 'podlasjr@gmail.com'],
-     'SanDiego': ['sam.radtke99@gmail.com'],
-     'region not found': ['sam.radtke99@gmail.com']
+     'testing': [] #put your email here within ''
 }
 
 #regions_df = pd.DataFrame(regions)
@@ -112,9 +111,8 @@ def check_email():
 
 #    query = f"after:{today_start_str} before: {today_end_str}"
 
-    #emailSender2.send_message(service2, "notibuddy@notibuddy.com", "sam.radtke99@gmail.com", "testing", "mic check")
     # Call the Gmail API to fetch emails
-    results = service.users().messages().list(userId='sakejohn79@gmail.com', q='is:unread AND from:Facebook').execute()
+    results = service.users().messages().list(userId= INSERT_FACEBOOK_EMAIL_HERE, q='is:unread AND from:Facebook').execute()
     messages = results.get('messages')
     i = 0
     if not messages:
@@ -122,7 +120,7 @@ def check_email():
     else:
         #print('Messages:')
         for message in messages:
-            msg = service.users().messages().get(userId='sakejohn79@gmail.com', id=message['id']).execute()
+            msg = service.users().messages().get(userId= INSERT_FACEBOOK_EMAIL_HERE , id=message['id']).execute()
             #service.users().messages().trash(userId='sakejohn79@gmail.com', id=message['id']).execute()
             #this check below will skip all processing below if the thread has already been found
             #if db_check.check_duplicate(c, msg) == 1: 
