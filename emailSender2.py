@@ -10,7 +10,6 @@ from email.mime.multipart import MIMEMultipart
 
 
 def send_message(service, sender, to, subject, info):
-    """Send an email message."""
     status = 0
     try:
         message = create_message(sender, to, subject, info)
@@ -22,12 +21,11 @@ def send_message(service, sender, to, subject, info):
         status = status - 1
     return status
 
+#this function creates the message object. Lines 33-39 are HTML. It took quite a bit of html to make the email look nice.
 def create_message(sender, to, subject, info):
-    """Create a message for an email."""
     user_name = info.get_uName()
     group = info.get_group()
     preview = info.get_preview()
-    #preview = full_post[:50] + "... see full post on Facebook!"
     link = info.get_link()
     date = info.get_date()
     part1 = """<html><table border="0" width="100%" cellspacing="0" cellpadding="0" style="border-collapse:collapse;"><tr><td width="100%" align="center"><table border="0" cellspacing="0" cellpadding="0" align="center" style="border-collapse:collapse;"><tr><td width="1280" align="center"><body style="max-width:640px; margin:0 auto;" dir="ltr" bgcolor="#ffffff"><table border="0" cellspacing="0" cellpadding="0" align="center" id="email_table"style="border-collapse:collapse;max-width:640px;margin:0 auto;"><tr><td id="email_content" style="font-family:Helvetica Neue,Helvetica,Lucida Grande,tahoma,verdana,arial,sans-serif;background:#ffffff;"><table border="0" width="100%" cellspacing="0" cellpadding="0" style="border-collapse:collapse;"><tr><td height="1" colspan="3" style="line-height:1px;"><span style="color:#FFFFFF;font-size:1px;opacity:0;">See what he posted.</span></td></tr><tr><td width="0" style="font-size:0;line-height:0;padding-left:15px;"></td><td><table border="0" width="100%" cellspacing="0" cellpadding="0" style="border-collapse:collapse;"><tr><td style="line-height:0;font-size:0;padding-top:15px;" colspan="3">&nbsp;</td></tr><tr><td width="0" style="font-size:0;line-height:0;padding-left:0px;"></td><td align:"center" valign:"middle" width="100%" style="font-weight:bold;text-align:center;font-family:Helvetica Neue,Helvetica,Lucida Grande,tahoma,verdana,arial,sans-serif;background:#ffffff;">Notibuddy</td><td width="0" style="font-size:0;line-height:0;padding-left:0px;"></td></tr><tr style="border-bottom:solid 1px #E4E6EB;"><td style="line-height:0;font-size:0;padding-top:15px;" colspan="3">&nbsp;</td></tr></table></td><td width="0" style="font-size:0;line-height:0;padding-left:0px;"></td></tr><tr><td width="0" style="font-size:0;line-height:0;padding-left:0px;"></td><td style=""><table border="0" width="100%" cellspacing="0" cellpadding="0" style="border-collapse:collapse;"><tr style=""><td style="line-height:0;font-size:0;padding-top:25px;">&nbsp;</td></tr><tr><td style=""><span class="mb_text" style="font-family:Helvetica Neue,Helvetica,Lucida Grande,tahoma,verdana,arial,sans-serif;font-size:16px;line-height:21px;color:#141823;"></span></td></tr><tr><td style=""><table border="0" width="100%" cellspacing="0" cellpadding="0" style="border-collapse:collapse;"><tr><td style="font-size:11px;font-family:LucidaGrande,tahoma,verdana,arial,sans-serif;background:#FFFFFF;border:solid 1px #E4E6EB;border-radius:6px;padding:15px;display:block;"><table border="0" width="100%" cellspacing="0" cellpadding="0" style="border-collapse:collapse;"><tr><td width="0" style="font-size:0;line-height:0;padding-left:0px;"></td><td width="100%" valign="middle" style=""><table border="0" cellspacing="0" cellpadding="0" style="border-collapse:collapse;"><tr><td style=""><span class="mb_text" style="color:#050505;font-size:16px;line-height:20px;font-weight:400;font-family:Roboto-Regular,Roboto,-apple-system,BlinkMacSystemFont,Helvetica Neue,Helvetica,Lucida Grande,tahoma,verdana,arial,sans-serif;"><a style="color:inherit;text-decoration:none;font-weight:bold;">"""
