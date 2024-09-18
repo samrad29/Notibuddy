@@ -8,7 +8,6 @@ from csv import writer
 import emailSender2
 import emailReader
 import db_check
-import smsSender
 import time
 import sqlite3
 
