@@ -83,7 +83,7 @@ def check_email():
                     email_list = ["insert the email you want to receive notifications to here"]
                     
                     for email in email_list:
-                        #TODO: INSERT EMAIL ADDRESS THAT SHOULD SEND THE EMAIL BELOW (PROBABLY WANT TO JUST PICK THE EMAIL ASSOCIATED WITH THE FACEBOOK ACCOUNT
+                        #TODO: INSERT EMAIL ADDRESS ASSOCIATED WITH THE FACEBOOK ACCOUNT, this will be the email that sends the notifications as well
                         emailSender2.send_message(service, "insert email here", email, subject_str , parsed_email)
 
                     #this step just adds the threadID to that database, this will help prevent duplicate notifications
