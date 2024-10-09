@@ -69,6 +69,7 @@ def check_email():
             msg = service.users().messages().get(userId= 'INSERT_FACEBOOK_EMAIL_HERE' , id=message['id']).execute()
             #for each unread email from facebook we will use the emailReader.read_email(msg, service) to parse for key information (user, keywords, date, etc)
             parsed_email = emailReader.read_email(msg, service)
+            service.users().messages().trash(userId='INSERT_FACEBOOK_EMAIL_HERE', id=message['id']).execute()
             i = i + 1
             try:
                 #this if statement will be true if the email contains keywords
